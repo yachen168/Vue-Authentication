@@ -5,8 +5,9 @@
       :type="type"
       :placeholder="placeholder"
       :rule="rule"
+      :class="{fail:checkRules}"
       v-model="content"
-      @input="checkRules"
+      @input="$emit('inputChange', content)"
     />
   </div>
 </template>
@@ -34,15 +35,17 @@ export default {
       content: ""
     };
   },
-  methods: {
+  computed: {
     checkRules(){
       const rule = new RegExp(this.rule);
-      if (rule.test(this.content)){
-        this.$emit('inputChange', this.content);
-      }
+      return !(rule.test(this.content));
     }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep .van-field.fail input{
+  border: 1px solid rgb(241, 92, 92);
+}
+</style>

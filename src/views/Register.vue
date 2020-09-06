@@ -5,14 +5,14 @@
       label="帳號"
       placeholder="請輸入帳號"
       rule="^[A-z\d]{6,16}$"
-      @inputChange="response => userName = response"
+      @inputChange="userName = $event"
     ></LoginInput>
     <LoginInput
       label="密碼"
       placeholder="請輸入密碼"
       type="password"
-      rule="^[\d|A-z]{8,}$"
-      @inputChange="response => password = response"
+      rule="^[A-z\d]{6,16}$"
+      @inputChange="password = $event"
     ></LoginInput>
     <LoginButton buttonText="註冊"></LoginButton>
   </div>
@@ -29,14 +29,13 @@ export default {
     LoginInput,
     LoginButton
   },
-  data(){
+  data() {
     return {
-      userName: '',
-      password: ''
-    } 
+      userName: "",
+      password: ""
+    };
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
