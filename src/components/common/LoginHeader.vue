@@ -1,8 +1,12 @@
 <template>
   <div class="header">
-    <div></div>
+    <div>
+      <slot name="left" />
+    </div>
     <h1>{{ pageName }}</h1>
-    <div></div>
+    <div class="slot">
+      <slot name="right" />
+    </div>
   </div>
 </template>
 
@@ -26,6 +30,10 @@ export default {
   h1 {
     font-size: 20px;
     font-weight: 400;
+  }
+  .slot {
+    font-size: 14px;
+    cursor: pointer;
   }
 }
 </style>
