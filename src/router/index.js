@@ -41,4 +41,13 @@ const router = new VueRouter({
     routes
 });
 
+router.beforeEach((to, from, next) => {
+    // 若無權限且該頁面需要權限，則導回登入頁面
+    if (!localStorage.getItem("token") && to.meta.isToken) {
+        router.push("/login");
+        return;
+    }
+    next();
+});
+
 export default router;
