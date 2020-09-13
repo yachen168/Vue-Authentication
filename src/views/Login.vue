@@ -5,10 +5,10 @@
         <div slot="right" @click="$router.push('/')">立即註冊</div>
       </LoginHeader>
       <LoginInput
-        label="帳號"
-        placeholder="請輸入帳號"
-        rule="^[A-z\d]{6,16}$"
-        @inputChange="loginInfo.username = $event"
+        label="信箱"
+        placeholder="請輸入信箱"
+        rule="^[A-z0-9]+@[A-z]+\.com{1}$"
+        @inputChange="loginInfo.email = $event"
       ></LoginInput>
       <LoginInput
         label="密碼"
@@ -19,7 +19,7 @@
       ></LoginInput>
       <LoginButton
         buttonText="登入"
-        :isDisabled="!(loginInfo.username && loginInfo.password)"
+        :isDisabled="!(loginInfo.email && loginInfo.password)"
         @register="$store.dispatch('postLogin', loginInfo)"
       ></LoginButton>
     </form>
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       loginInfo: {
-        username: "",
+        email: "",
         password: ""
       }
     };

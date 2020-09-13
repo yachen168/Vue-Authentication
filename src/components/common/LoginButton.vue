@@ -1,6 +1,11 @@
 <template>
-  <div class="wrapper" @click="$emit('register')">
-    <button class="login-button" :class="{disabled: isDisabled}" :disabled="isDisabled">
+  <div class="wrapper">
+    <button
+      class="login-button"
+      :class="{ disabled: isDisabled }"
+      :disabled="isDisabled"
+      @click.prevent="$emit('register')"
+    >
       {{ buttonText }}
     </button>
   </div>
@@ -38,7 +43,7 @@ export default {
   cursor: pointer;
 }
 
-.login-button.disabled{
+.login-button.disabled {
   background-color: rgb(214, 214, 214);
   cursor: not-allowed;
 }
