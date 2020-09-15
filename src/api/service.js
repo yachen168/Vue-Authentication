@@ -1,15 +1,22 @@
 import axios from "axios";
 import router from "../router";
-const domainURL = "https://k88d02.ml/";
+const domainURL = "https://k88d02.ml";
 
 const Api = axios.create({
-    baseURL: "https://k88d02.ml/api",
+    baseURL: `${domainURL}/api`,
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
     }
 });
 
+const apiUploadImg = axios.create({
+    baseURL: `${domainURL}/api`,
+    headers: {
+        "Content-Type": "image/png",
+        Accept: "application/json"
+    }
+});
 
 Api.interceptors.request.use(
     function(config) {
@@ -37,4 +44,4 @@ Api.interceptors.response.use(
     }
 );
 
-export { domainURL, Api };
+export { domainURL, Api, apiUploadImg };
