@@ -9,6 +9,7 @@
     <div class="avatar">
       <img src="@/assets/images/avatar.jpg" alt="" />
     </div>
+    <span class="logout" @click="$emit('logout')">登出</span>
     <div class="download">下載 App</div>
   </div>
 </template>
@@ -50,6 +51,9 @@ export default {};
     background-color: #ff9db5;
     color: #fff;
     border-radius: 5px;
+    cursor: pointer;
+  }
+  .logout {
     cursor: pointer;
   }
 }

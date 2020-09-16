@@ -2,12 +2,13 @@ import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
 import { Toast } from "vant";
-import { domainURL, Api, apiUploadImg } from "@/api/service";
+import { domainURL, API } from "@/api/service";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        token: '',
         userInfo: {}
     },
     mutations: {
@@ -26,7 +27,7 @@ export default new Vuex.Store({
     actions: {
         async postRegister({ commit }, userInfo) {
             try {
-                await Api.post("/register", userInfo);
+                await API.post("/register", userInfo);
                 console.log(commit);
                 Toast.success("註冊成功");
                 router.push("/login"); // 跳轉到登入頁面
@@ -36,9 +37,10 @@ export default new Vuex.Store({
         },
         async postLogin({ commit }, userInfo) {
             try {
-                const response = await Api.post("/login", userInfo);
+                const response = await API.post("/login", userInfo);
                 Toast.success("登入成功");
-                localStorage.setItem( // 將 token 存到 localStorage
+                localStorage.setItem(
+                    // 將 token 存到 localStorage
                     "remember_token",
                     response.data.data["remember_token"]
                 );
@@ -50,21 +52,32 @@ export default new Vuex.Store({
         },
         async fetchUserInfo({ commit }) {
             const token = localStorage.getItem("remember_token");
-            const response = await Api.post("/info", { remember_token: token });
+            const response = await API.post("/info", { remember_token: token });
             commit("setUserInfo", response.data);
         },
-        async uploadFile({ commit, dispatch }, formdata) {
+        async uploadFile({ commit }, formdata) {
             try {
-                const response = await apiUploadImg.post("/uploadImageAPI", formdata); // 返回一組 url
+                const response = await API.post("/uploadImageAPI", formdata, {
+                    headers: {
+                        "Content-Type": "image/png",
+                        Accept: "application/json"
+                    }
+                }); // 返回一組 url
                 commit("uploadFile", response.data.data.url); // 先改畫面
-                dispatch("updateUserInfo");
             } catch (error) {
                 Toast.fail("發生錯誤");
             }
         },
-        async updateUserInfo() {
-            const remember_token = localStorage.getItem("remember_token");
-            await Api.post("/info", { remember_token: remember_token });
+        async logout() {
+            try {
+                const remember_token = localStorage.getItem("remember_token");
+                await API.post("/logout", { remember_token: remember_token });
+                localStorage.setItem("remember_token", "");
+                Toast.success("已登出");
+                router.push("/login");
+            } catch (error) {
+                Toast.fail("發生錯誤");
+            }
         }
     },
     getters: {
