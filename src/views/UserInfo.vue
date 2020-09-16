@@ -1,17 +1,15 @@
 <template>
   <div>
-    <Navbar></Navbar>
-    <UserDetail :userInfo="$store.getters.userInfo"></UserDetail>
+    <Navbar @logout="$store.dispatch('logout')"></Navbar>
+    <router-view />
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/common/Navbar";
-import UserDetail from "@/components/userInfo/UserDetail";
 export default {
   components: {
-    Navbar,
-    UserDetail
+    Navbar
   },
   created() {
     this.$store.dispatch("fetchUserInfo");
@@ -19,8 +17,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-h1 {
-  text-align: center;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -18,20 +18,41 @@ const routes = [
   {
     path: "/userinfo",
     name: "UserInfo",
+    redirect: "/userinfo/view", // default page
     component: () =>
       import(/* webpackChunkName: "user-info" */ "@/views/UserInfo.vue"),
-    meta: {
-      isToken: true
-    }
-  },
-  {
-    path: "/edit",
-    name: "Edit",
-    component: () => import(/* webpackChunkName: "edit" */ "@/views/Edit.vue"),
-    meta: {
-      isToken: true // 在需要權限的路由裡個別設定 meta
-    }
+    children: [
+      {
+        path: "view",
+        name: "UserInfoHome",
+        component: () =>
+          import(
+            /* webpackChunkName: "user-info" */
+            "@/views/UserInfoView.vue"
+          ),
+        meta: {
+          isToken: true // 在需要權限的路由裡個別設定 meta
+        }
+      },
+      {
+        path: "edit",
+        name: "UserInfoEdit",
+        component: () => import("@/views/UserInfoEdit.vue"),
+        meta: {
+          isToken: true // 在需要權限的路由裡個別設定 meta
+        }
+      }
+    ]
   }
+  // {
+  //     path: "/userinfoedit",
+  //     name: "UserInfoEdit",
+  //     component: () =>
+  //         import ( /* webpackChunkName: "edit" */ "@/views/UserInfoEdit.vue"),
+  //     meta: {
+  //         isToken: true // 在需要權限的路由裡個別設定 meta
+  //     }
+  // }
 ];
 
 const router = new VueRouter({

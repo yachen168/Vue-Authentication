@@ -1,6 +1,5 @@
 <template>
   <div class="edit-page">
-    <Navbar></Navbar>
     <EditBanner title="個人照片">
       <div class="avatar-wrapper">
         <van-uploader
@@ -31,12 +30,6 @@
       show-cancel-button
       confirm-button-text="儲存修改"
       cancel-button-text="取消"
-      @confirm="
-        $store.dispatch('updateUserInfo', {
-          ...$store.getters.userInfo,
-          name: content
-        })
-      "
     >
       <van-field
         :value="$store.getters.userInfo.name"
@@ -48,11 +41,9 @@
 </template>
 
 <script>
-import Navbar from "@/components/common/Navbar";
 import EditBanner from "@/components/common/EditBanner";
 export default {
   components: {
-    Navbar,
     EditBanner
   },
   data() {
