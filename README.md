@@ -3,7 +3,7 @@
 - Vue CLI
 - Vue Router
 - Vant
-- axios
+- Axios
 
 ## 實現功能
 - 會員註冊
