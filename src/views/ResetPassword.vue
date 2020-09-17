@@ -20,6 +20,10 @@
       :isDisabled="resetedPassword&&checkedPassword&&resetedPassword !== checkedPassword"
       @clickHandler="$store.dispatch('resetPassword', resetedPassword)"
     ></FormButton>
+    <FormButton
+      buttonText="取消"
+      @clickHandler="$router.push({name: 'UserInfoEdit'})"
+    ></FormButton>
   </form>
 </template>
 
