@@ -2,7 +2,7 @@
   <div>
     <form class="register">
       <LoginHeader pageName="註冊帳號">
-        <div slot="right" @click="$router.push('/login')">切換登入</div>
+        <div slot="right" @click="$router.push({name: 'Login'})">切換登入</div>
       </LoginHeader>
       <LoginInput
         label="帳號"
@@ -23,13 +23,13 @@
         rule="^[A-z\d]{6,16}$"
         @inputChange="registerInfo.password = $event"
       ></LoginInput>
-      <LoginButton
+      <FormButton
         buttonText="註冊"
-        @register="$store.dispatch('postRegister', registerInfo)"
+        @clickHandler="$store.dispatch('postRegister', registerInfo)"
         :isDisabled="
           !(registerInfo.name && registerInfo.email && registerInfo.password)
         "
-      ></LoginButton>
+      ></FormButton>
     </form>
   </div>
 </template>
@@ -37,13 +37,13 @@
 <script>
 import LoginHeader from "@/components/common/LoginHeader";
 import LoginInput from "@/components/common/LoginInput";
-import LoginButton from "@/components/common/LoginButton";
+import FormButton from "@/components/common/FormButton";
 
 export default {
   components: {
     LoginHeader,
     LoginInput,
-    LoginButton
+    FormButton
   },
   data() {
     return {

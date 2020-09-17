@@ -4,7 +4,7 @@
       class="login-button"
       :class="{ disabled: isDisabled }"
       :disabled="isDisabled"
-      @click.prevent="$emit('register')"
+      @click.prevent="$emit('clickHandler')"
     >
       {{ buttonText }}
     </button>
