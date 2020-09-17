@@ -17,7 +17,7 @@
     ></LoginInput>
     <FormButton
       buttonText="確認更改密碼"
-      :isDisabled="resetedPassword!==checkedPassword"
+      :isDisabled="resetedPassword&&checkedPassword&&resetedPassword !== checkedPassword"
       @clickHandler="$store.dispatch('resetPassword', resetedPassword)"
     ></FormButton>
   </form>
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       resetedPassword: "",
-      checkedPassword:""
+      checkedPassword: ""
     };
   }
 };
