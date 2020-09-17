@@ -4,10 +4,8 @@
       :label="label"
       :type="type"
       :placeholder="placeholder"
-      :rule="rule"
-      :class="{ fail: checkRules }"
-      v-model="content"
-      @input="$emit('inputChange', content)"
+      :value="content"
+      @input="$emit('inputChange', $event)"
     />
   </div>
 </template>
@@ -15,6 +13,10 @@
 <script>
 export default {
   props: {
+    content: {
+      type: String,
+      required: true
+    },
     label: {
       type: String,
       required: true
@@ -25,27 +27,26 @@ export default {
     placeholder: {
       type: String,
       required: true
-    },
-    rule: {
-      type: String
-    }
-  },
-  data() {
-    return {
-      content: ""
-    };
-  },
-  computed: {
-    checkRules() {
-      const rule = new RegExp(this.rule);
-      return !rule.test(this.content);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-::v-deep .van-field.fail input {
-  border: 1px solid rgb(241, 92, 92);
+::v-deep .van-field input {
+  padding: 10px 5px;
+  border: 1px solid #219665;
+  border-radius: 5px;
+}
+
+::v-deep .van-field {
+  flex-direction: column;
+  .van-field__label {
+    width: auto;
+  }
+  .van-cell__title {
+    font-weight: 500;
+    color: #219665;
+  }
 }
 </style>

@@ -1,25 +1,28 @@
 <template>
   <div>
+    <Navbar :isLogout="false" @logout="$store.dispatch('logout')"></Navbar>
     <form class="register">
       <LoginHeader pageName="登入">
-        <div slot="right" @click="$router.push({name: 'Register'})">立即註冊</div>
+        <div slot="right" @click="$router.push({ name: 'Register' })">
+          立即註冊
+        </div>
       </LoginHeader>
       <LoginInput
-        label="信箱"
+        label="帳號 (電子信箱)"
         placeholder="請輸入信箱"
-        rule="^[A-z0-9]+@[A-z]+\.com{1}$"
+        :content="loginInfo.email"
         @inputChange="loginInfo.email = $event"
       ></LoginInput>
       <LoginInput
         label="密碼"
         placeholder="請輸入密碼"
         type="password"
-        rule="^[A-z\d]{6,16}$"
+        :content="loginInfo.password"
         @inputChange="loginInfo.password = $event"
       ></LoginInput>
       <FormButton
         buttonText="登入"
-        :isDisabled="!(loginInfo.email && loginInfo.password)"
+        :isDisabled="!isButtonDisabled"
         @clickHandler="$store.dispatch('postLogin', loginInfo)"
       ></FormButton>
     </form>
@@ -28,12 +31,14 @@
 </template>
 
 <script>
+import Navbar from "@/components/common/Navbar";
 import LoginHeader from "@/components/common/LoginHeader";
 import LoginInput from "@/components/common/LoginInput";
 import FormButton from "@/components/common/FormButton";
 
 export default {
   components: {
+    Navbar,
     LoginHeader,
     LoginInput,
     FormButton
@@ -45,6 +50,15 @@ export default {
         password: ""
       }
     };
+  },
+  computed: {
+    isButtonDisabled() {
+      const isEmailPass = /^[A-z0-9]+@[A-z]+\.com{1}$/.test(
+        this.loginInfo.email
+      );
+      const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.loginInfo.password);
+      return isEmailPass && isPasswordPass;
+    }
   }
 };
 </script>

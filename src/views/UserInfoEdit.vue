@@ -37,6 +37,9 @@
         autofocus
       />
     </van-dialog>
+    <p class="reset-password" @click="$router.push({ name: 'ResetPassword' })">
+      重設密碼
+    </p>
   </div>
 </template>
 
@@ -58,7 +61,9 @@ export default {
   },
   methods: {
     fetchUserInfo() {
-      this.$store.dispatch("fetchUserInfo");
+      this.$store.dispatch("fetchUserInfo", {
+        remember_token: this.$store.getters.token
+      });
     },
     afterRead(file) {
       const token = localStorage.getItem("remember_token");
@@ -90,6 +95,13 @@ export default {
       height: 100%;
     }
   }
+}
+
+.reset-password {
+  width: 80px;
+  margin-left: auto;
+  color: rgb(0, 119, 255);
+  cursor: pointer;
 }
 
 ::v-deep .van-uploader__wrapper {

@@ -29,7 +29,8 @@ export default {
   padding: 10px 0;
   h1 {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: bold;
+    color: #219665;
   }
   .slot {
     font-size: 14px;

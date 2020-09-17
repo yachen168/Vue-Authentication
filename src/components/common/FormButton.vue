@@ -34,7 +34,7 @@ export default {
   width: 100%;
   height: 45px;
   line-height: 45px;
-  background-color: #ff9db5;
+  background-color: #219665;
   color: #fff;
   font-weight: 500;
   text-align: center;
