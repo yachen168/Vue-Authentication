@@ -19,9 +19,9 @@ const routes = [{
         path: "/resetpassword",
         name: "ResetPassword",
         component: () =>
-            import ( /* webpackChunkName: "login" */ "@/views/ResetPassword.vue"),
+            import ( /* webpackChunkName: "reset-password" */ "@/views/ResetPassword.vue"),
         meta: {
-            isToken: true // 在需要權限的路由裡個別設定 meta
+            isToken: true
         }
     },
     {
@@ -32,23 +32,24 @@ const routes = [{
             import ( /* webpackChunkName: "user-info" */ "@/views/UserInfo.vue"),
         children: [{
                 path: "view",
-                name: "UserInfoHome",
+                name: "UserInfoView",
                 component: () =>
                     import (
-                        /* webpackChunkName: "user-info" */
+                        /* webpackChunkName: "user-info-view" */
                         "@/views/UserInfoView.vue"
                     ),
                 meta: {
-                    isToken: true // 在需要權限的路由裡個別設定 meta
+                    isToken: true
                 }
             },
             {
                 path: "edit",
                 name: "UserInfoEdit",
                 component: () =>
+                    /* webpackChunkName: "user-info-edit" */
                     import ("@/views/UserInfoEdit.vue"),
                 meta: {
-                    isToken: true // 在需要權限的路由裡個別設定 meta
+                    isToken: true
                 }
             }
         ]
