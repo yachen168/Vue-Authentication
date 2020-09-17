@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        token: '',
+        token: "",
         userInfo: {}
     },
     mutations: {
@@ -77,6 +77,18 @@ export default new Vuex.Store({
                 router.push("/login");
             } catch (error) {
                 Toast.fail("發生錯誤");
+            }
+        },
+        async resetPassword({ commit }, resetedPassword) {
+            try {
+                const remember_token = localStorage.getItem("remember_token");
+                await API.post("/reset", { remember_token: remember_token, password: resetedPassword });
+                localStorage.setItem("remember_token", "");
+                Toast.success("新密碼設定成功，請重新登入");
+                router.push("/login");
+            } catch (error) {
+                Toast.fail("發生錯誤");
+                console.log(commit)
             }
         }
     },
