@@ -1,5 +1,6 @@
 <template>
   <div class="edit-page">
+    <PageTitle pageName="用戶資訊"></PageTitle>
     <EditBanner title="個人照片">
       <div class="avatar-wrapper">
         <van-uploader
@@ -44,9 +45,11 @@
 </template>
 
 <script>
+import PageTitle from "@/components/common/PageTitle";
 import EditBanner from "@/components/common/EditBanner";
 export default {
   components: {
+    PageTitle,
     EditBanner
   },
   data() {
@@ -61,13 +64,13 @@ export default {
   },
   methods: {
     fetchUserInfo() {
+      const token = localStorage.getItem("remember_token");
       this.$store.dispatch("fetchUserInfo", {
-        remember_token: this.$store.getters.token
+        remember_token: token
       });
     },
     afterRead(file) {
       const token = localStorage.getItem("remember_token");
-
       const formdata = new FormData();
       formdata.append("photo", file.file);
       formdata.append("remember_token", token);

@@ -1,12 +1,9 @@
 <template>
   <div class="header">
-    <div>
-      <slot name="left" />
+    <div class="slot">
+      <slot />
     </div>
     <h1>{{ pageName }}</h1>
-    <div class="slot">
-      <slot name="right" />
-    </div>
   </div>
 </template>
 
@@ -23,18 +20,25 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
+  padding: 10px 15px;
   h1 {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
     font-size: 20px;
     font-weight: bold;
     color: #219665;
   }
   .slot {
+    float: right;
+    margin-top: 5px;
     font-size: 14px;
     cursor: pointer;
+  }
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
   }
 }
 </style>

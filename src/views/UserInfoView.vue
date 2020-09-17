@@ -12,14 +12,10 @@ export default {
     UserDetail
   },
   created() {
-    this.fetchUserInfo();
-  },
-  methods: {
-    fetchUserInfo() {
-      this.$store.dispatch("fetchUserInfo", {
-        remember_token: this.$store.getters.token
-      });
-    }
+    const token = localStorage.getItem("remember_token");
+    this.$store.dispatch("fetchUserInfo", {
+      remember_token: token
+    });
   }
 };
 </script>

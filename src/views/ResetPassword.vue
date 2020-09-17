@@ -2,21 +2,21 @@
   <div>
     <Navbar :isLogout="true" @logout="$store.dispatch('logout')"></Navbar>
     <form>
-      <h1>重新設定新密碼</h1>
-      <LoginInput
+      <PageTitle pageName="重新設定新密碼"></PageTitle>
+      <CommonInput
         label="新密碼"
         placeholder="請輸入新密碼(6 ~ 12 字元)"
         type="password"
         :content="resetedPassword"
         @inputChange="resetedPassword = $event"
-      ></LoginInput>
-      <LoginInput
+      ></CommonInput>
+      <CommonInput
         label="確認新密碼"
         placeholder="請再次輸入新密碼"
         type="password"
         :content="checkedPassword"
         @inputChange="checkedPassword = $event"
-      ></LoginInput>
+      ></CommonInput>
       <FormButton
         buttonText="確認更改密碼"
         :isDisabled="!isButtonDisabled"
@@ -32,13 +32,15 @@
 
 <script>
 import Navbar from "@/components/common/Navbar";
-import LoginInput from "@/components/common/LoginInput";
+import PageTitle from "@/components/common/PageTitle";
+import CommonInput from "@/components/common/CommonInput";
 import FormButton from "@/components/common/FormButton";
 
 export default {
   components: {
     Navbar,
-    LoginInput,
+    PageTitle,
+    CommonInput,
     FormButton
   },
   data() {
