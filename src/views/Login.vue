@@ -71,8 +71,9 @@ export default {
 
 <style lang="scss" scoped>
 .forget {
+  width: fit-content;
+  margin-left: auto;
   padding: 0 10px;
-  text-align: right;
   cursor: pointer;
 }
 </style>

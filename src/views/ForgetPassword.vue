@@ -23,6 +23,7 @@
       ></FormButton>
       <FormButton
         buttonText="取消"
+        :isDisabled="false"
         @clickHandler="$router.back()"
       ></FormButton>
     </form>
