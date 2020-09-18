@@ -33,12 +33,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .van-field input {
-  padding: 10px 5px;
-  border: 1px solid #219665;
-  border-radius: 5px;
-}
-
 ::v-deep .van-field {
   flex-direction: column;
   .van-field__label {
@@ -47,6 +41,11 @@ export default {
   .van-cell__title {
     font-weight: 500;
     color: #219665;
+  }
+  input {
+    padding: 10px 5px;
+    border: 1px solid #219665;
+    border-radius: 5px;
   }
 }
 </style>
