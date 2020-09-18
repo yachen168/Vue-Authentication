@@ -28,10 +28,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async postRegister({ commit }, userInfo) {
+    async postRegister({}, userInfo) {
       try {
         await API.post("/register", userInfo);
-        console.log(commit);
         Toast.success("註冊成功");
         router.push("/login"); // 跳轉到登入頁面
       } catch (error) {
@@ -79,7 +78,7 @@ export default new Vuex.Store({
         Toast.fail("發生錯誤");
       }
     },
-    async resetPassword({ commit }, resetedPassword) {
+    async resetPassword({}, resetedPassword) {
       try {
         const remember_token = localStorage.getItem("remember_token");
         await API.post("/reset", {
@@ -91,18 +90,15 @@ export default new Vuex.Store({
         router.push("/login");
       } catch (error) {
         Toast.fail("發生錯誤");
-        console.log(commit);
       }
     },
-    async forgetPassword({ commit }, data) {
-      console.log(data);
+    async forgetPassword({}, data) {
       try {
         await API.post("/forget", data);
         Toast.success("新密碼設定成功，請重新登入");
         router.push("/login");
       } catch (error) {
         Toast.fail("發生錯誤");
-        console.log(commit);
       }
     },
     setToken({ commit }) {
