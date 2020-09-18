@@ -24,20 +24,6 @@
     <EditBanner title="信箱">
       <span>{{ $store.getters.userInfo.email }}</span>
     </EditBanner>
-
-    <van-dialog
-      v-model="isNameDialogShow"
-      title="暱稱"
-      show-cancel-button
-      confirm-button-text="儲存修改"
-      cancel-button-text="取消"
-    >
-      <van-field
-        :value="$store.getters.userInfo.name"
-        @input="content = $event"
-        autofocus
-      />
-    </van-dialog>
     <p class="reset-password" @click="$router.push({ name: 'ResetPassword' })">
       重設密碼
     </p>
