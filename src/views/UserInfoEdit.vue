@@ -45,16 +45,7 @@ export default {
       content: ""
     };
   },
-  created() {
-    this.fetchUserInfo();
-  },
   methods: {
-    fetchUserInfo() {
-      const token = localStorage.getItem("remember_token");
-      this.$store.dispatch("fetchUserInfo", {
-        remember_token: token
-      });
-    },
     afterRead(file) {
       const token = localStorage.getItem("remember_token");
       const formdata = new FormData();

@@ -7,95 +7,116 @@ import { domainURL, API } from "@/api/service";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    state: {
-        token: "",
-        userInfo: {}
+  state: {
+    token: "",
+    userInfo: {}
+  },
+  mutations: {
+    setUserInfo(state, userInfo) {
+      if (userInfo.image_path) {
+        const image_path = `${domainURL}${userInfo.image_path}`; // add domainURL
+        state.userInfo = { ...userInfo, image_path };
+      } else {
+        state.userInfo = userInfo;
+      }
     },
-    mutations: {
-        setUserInfo(state, userInfo) {
-            if (userInfo.image_path) {
-                const image_path = `${domainURL}${userInfo.image_path}`; // add domainURL
-                state.userInfo = {...userInfo, image_path };
-            } else {
-                state.userInfo = userInfo;
-            }
-        },
-        uploadFile(state, url) {
-            state.userInfo.image_path = `${domainURL}${url}`;
-        }
+    uploadFile(state, url) {
+      state.userInfo.image_path = `${domainURL}${url}`;
     },
-    actions: {
-        async postRegister({ commit }, userInfo) {
-            try {
-                await API.post("/register", userInfo);
-                console.log(commit);
-                Toast.success("註冊成功");
-                router.push("/login"); // 跳轉到登入頁面
-            } catch (error) {
-                Toast.fail("註冊失敗，格式有誤或該帳號已經存在");
-            }
-        },
-        async postLogin({ commit }, userInfo) {
-            try {
-                const response = await API.post("/login", userInfo);
-                Toast.success("登入成功");
-                localStorage.setItem(
-                    // 將 token 存到 localStorage
-                    "remember_token",
-                    response.data.data["remember_token"]
-                );
-                router.push("/userinfo"); // 跳轉到個人資訊頁面
-            } catch (error) {
-                Toast.fail("帳號密碼錯誤");
-            }
-            console.log(commit);
-        },
-        async fetchUserInfo({ commit }) {
-            const token = localStorage.getItem("remember_token");
-            const response = await API.post("/info", { remember_token: token });
-            commit("setUserInfo", response.data);
-        },
-        async uploadFile({ commit }, formdata) {
-            try {
-                const response = await API.post("/uploadImageAPI", formdata, {
-                    headers: {
-                        "Content-Type": "image/png",
-                        Accept: "application/json"
-                    }
-                }); // 返回一組 url
-                commit("uploadFile", response.data.data.url); // 先改畫面
-            } catch (error) {
-                Toast.fail("發生錯誤");
-            }
-        },
-        async logout() {
-            try {
-                const remember_token = localStorage.getItem("remember_token");
-                await API.post("/logout", { remember_token: remember_token });
-                localStorage.setItem("remember_token", "");
-                Toast.success("已登出");
-                router.push("/login");
-            } catch (error) {
-                Toast.fail("發生錯誤");
-            }
-        },
-        async resetPassword({ commit }, resetedPassword) {
-            try {
-                const remember_token = localStorage.getItem("remember_token");
-                await API.post("/reset", { remember_token: remember_token, password: resetedPassword });
-                localStorage.setItem("remember_token", "");
-                Toast.success("新密碼設定成功，請重新登入");
-                router.push("/login");
-            } catch (error) {
-                Toast.fail("發生錯誤");
-                console.log(commit)
-            }
-        }
+    setToken(state, token) {
+      state.token = token;
+    }
+  },
+  actions: {
+    async postRegister({ commit }, userInfo) {
+      try {
+        await API.post("/register", userInfo);
+        console.log(commit);
+        Toast.success("註冊成功");
+        router.push("/login"); // 跳轉到登入頁面
+      } catch (error) {
+        Toast.fail("註冊失敗，格式有誤或該帳號已經存在");
+      }
     },
-    getters: {
-        userInfo(state) {
-            return state.userInfo;
-        }
+    async postLogin({ commit }, userInfo) {
+      try {
+        const response = await API.post("/login", userInfo);
+        const token = response.data.data["remember_token"];
+        Toast.success("登入成功");
+
+        localStorage.setItem("remember_token", token);
+        commit("setToken", token);
+        router.push("/userinfo"); // 跳轉到個人資訊頁面
+      } catch (error) {
+        Toast.fail("帳號密碼錯誤");
+      }
     },
-    modules: {}
+    async fetchUserInfo({ commit }, token) {
+      const response = await API.post("/info", token);
+      commit("setUserInfo", response.data);
+    },
+    async uploadFile({ commit }, formdata) {
+      try {
+        const response = await API.post("/uploadImageAPI", formdata, {
+          headers: {
+            "Content-Type": "image/png",
+            Accept: "application/json"
+          }
+        }); // 返回一組 url
+        commit("uploadFile", response.data.data.url); // 先改畫面
+      } catch (error) {
+        Toast.fail("發生錯誤");
+      }
+    },
+    async logout() {
+      try {
+        const remember_token = localStorage.getItem("remember_token");
+        await API.post("/logout", { remember_token: remember_token });
+        localStorage.setItem("remember_token", "");
+        Toast.success("已登出");
+        router.push("/login");
+      } catch (error) {
+        Toast.fail("發生錯誤");
+      }
+    },
+    async resetPassword({ commit }, resetedPassword) {
+      try {
+        const remember_token = localStorage.getItem("remember_token");
+        await API.post("/reset", {
+          remember_token: remember_token,
+          password: resetedPassword
+        });
+        localStorage.setItem("remember_token", "");
+        Toast.success("新密碼設定成功，請重新登入");
+        router.push("/login");
+      } catch (error) {
+        Toast.fail("發生錯誤");
+        console.log(commit);
+      }
+    },
+    async forgetPassword({ commit }, data) {
+      console.log(data);
+      try {
+        await API.post("/forget", data);
+        Toast.success("新密碼設定成功，請重新登入");
+        router.push("/login");
+      } catch (error) {
+        Toast.fail("發生錯誤");
+        console.log(commit);
+      }
+    },
+    setToken({ commit }) {
+      const token = localStorage.getItem("remember_token");
+      commit("setToken", token);
+    }
+  },
+  getters: {
+    userInfo(state) {
+      return state.userInfo;
+    },
+    token(state) {
+      return state.token;
+    }
+  },
+  modules: {}
 });
