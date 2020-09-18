@@ -19,7 +19,7 @@ const routes = [
     path: "/forgetpassword",
     name: "ForgetPassword",
     component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/ForgetPassword.vue")
+      import(/* webpackChunkName: "forget-password" */ "@/views/ForgetPassword.vue")
   },
   {
     path: "/resetpassword",
