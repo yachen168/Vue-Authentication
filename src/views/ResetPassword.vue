@@ -53,9 +53,7 @@ export default {
   computed: {
     isButtonDisabled() {
       const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.resetedPassword);
-      const isDoubleCheckEmailPass = /^[A-z\d]{6,16}$/.test(
-        this.checkedPassword
-      );
+      const isDoubleCheckEmailPass = this.resetedPassword===this.checkedPassword;
       return isPasswordPass && isDoubleCheckEmailPass;
     }
   }
