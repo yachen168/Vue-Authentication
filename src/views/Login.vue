@@ -11,14 +11,14 @@
         label="帳號 (電子信箱)"
         placeholder="請輸入信箱"
         :content="email"
-        @inputChange="email = $event"
+        @update:value="email = $event"
       ></CommonInput>
       <CommonInput
         label="密碼"
         placeholder="請輸入密碼"
         type="password"
         :content="password"
-        @inputChange="password = $event"
+        @update:value="password = $event"
       ></CommonInput>
       <FormButton
         buttonText="登入"

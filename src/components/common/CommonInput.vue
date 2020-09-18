@@ -5,7 +5,7 @@
       :type="type"
       :placeholder="placeholder"
       :value="content"
-      @input="$emit('inputChange', $event)"
+      @input="$emit('update:value', $event)"
     />
   </div>
 </template>

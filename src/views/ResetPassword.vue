@@ -8,14 +8,14 @@
         placeholder="請輸入新密碼(6 ~ 12 字元)"
         type="password"
         :content="resetedPassword"
-        @inputChange="resetedPassword = $event"
+        @update:value="resetedPassword = $event"
       ></CommonInput>
       <CommonInput
         label="確認新密碼"
         placeholder="請再次輸入新密碼"
         type="password"
         :content="checkedPassword"
-        @inputChange="checkedPassword = $event"
+        @update:value="checkedPassword = $event"
       ></CommonInput>
       <FormButton
         buttonText="確認更改密碼"
@@ -24,6 +24,7 @@
       ></FormButton>
       <FormButton
         buttonText="取消"
+        :isDisabled="false"
         @clickHandler="$router.push({ name: 'UserInfoEdit' })"
       ></FormButton>
     </form>

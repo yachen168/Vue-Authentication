@@ -10,22 +10,21 @@
       <CommonInput
         label="用戶暱稱"
         placeholder="例如: 小明"
-        type="password"
         :content="name"
-        @inputChange="name = $event"
+        @update:value="name = $event"
       ></CommonInput>
       <CommonInput
         label="帳號 (電子信箱)"
         placeholder="請輸入帳號"
         :content="email"
-        @inputChange="email = $event"
+        @update:value="email = $event"
       ></CommonInput>
       <CommonInput
         label="密碼 (須 6~12 字)"
         placeholder="請輸入密碼"
         type="password"
         :content="password"
-        @inputChange="password = $event"
+        @update:value="password = $event"
       ></CommonInput>
       <FormButton
         buttonText="註冊"
