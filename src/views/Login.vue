@@ -26,7 +26,9 @@
         @clickHandler="login"
       ></FormButton>
     </form>
-    <!-- <p @click="$router.push({ name: 'ResetPassword' })">忘記密碼</p> -->
+    <p class="forget" @click="$router.push({ name: 'ForgetPassword' })">
+      忘記密碼
+    </p>
   </div>
 </template>
 
@@ -50,11 +52,11 @@ export default {
     };
   },
   methods: {
-    login(){
-      this.$store.dispatch('postLogin', {
+    login() {
+      this.$store.dispatch("postLogin", {
         email: this.email,
         password: this.password
-      })
+      });
     }
   },
   computed: {
@@ -67,4 +69,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.forget {
+  padding: 0 10px;
+  text-align: right;
+  cursor: pointer;
+}
+</style>
