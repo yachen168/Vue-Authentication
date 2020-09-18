@@ -19,8 +19,7 @@
 - 權限管理
   - axios 攔截器
   - 路由守衛
-- Vue component
-- Vue 資料流
-- Vue 巢狀路由使用技巧與時機
+- Pure component
+- 巢狀路由使用技巧與時機
 - 使用正則表達式驗證暱稱、信箱、密碼格式
 - formData 檔案上傳
