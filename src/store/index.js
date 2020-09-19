@@ -28,7 +28,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async postRegister({}, userInfo) {
+    async register({}, userInfo) {
       try {
         await API.post("/register", userInfo);
         Toast.success("註冊成功");
@@ -37,7 +37,7 @@ export default new Vuex.Store({
         Toast.fail("註冊失敗，格式有誤或該帳號已經存在");
       }
     },
-    async postLogin({ commit }, userInfo) {
+    async login({ commit }, userInfo) {
       try {
         const response = await API.post("/login", userInfo);
         const token = response.data.data["remember_token"];
@@ -48,6 +48,16 @@ export default new Vuex.Store({
         router.push("/userinfo"); // 跳轉到個人資訊頁面
       } catch (error) {
         Toast.fail("帳號密碼錯誤");
+      }
+    },
+    async logout({}, token) {
+      try {
+        await API.post("/logout", token);
+        localStorage.setItem("remember_token", "");
+        Toast.success("已登出");
+        router.push("/login");
+      } catch (error) {
+        Toast.fail("發生錯誤");
       }
     },
     async fetchUserInfo({ commit }, token) {
@@ -67,24 +77,9 @@ export default new Vuex.Store({
         Toast.fail("發生錯誤");
       }
     },
-    async logout() {
+    async resetPassword({getters}, data) {
       try {
-        const remember_token = localStorage.getItem("remember_token");
-        await API.post("/logout", { remember_token: remember_token });
-        localStorage.setItem("remember_token", "");
-        Toast.success("已登出");
-        router.push("/login");
-      } catch (error) {
-        Toast.fail("發生錯誤");
-      }
-    },
-    async resetPassword({}, resetedPassword) {
-      try {
-        const remember_token = localStorage.getItem("remember_token");
-        await API.post("/reset", {
-          remember_token: remember_token,
-          password: resetedPassword
-        });
+        await API.post("/reset", data);
         localStorage.setItem("remember_token", "");
         Toast.success("新密碼設定成功，請重新登入");
         router.push("/login");

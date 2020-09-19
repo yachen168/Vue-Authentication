@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("postLogin", {
+      this.$store.dispatch("login", {
         email: this.email,
         password: this.password
       });

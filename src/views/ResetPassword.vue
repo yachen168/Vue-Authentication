@@ -20,7 +20,7 @@
       <FormButton
         buttonText="確認更改密碼"
         :isDisabled="!isButtonDisabled"
-        @clickHandler="$store.dispatch('resetPassword', resetedPassword)"
+        @clickHandler="$store.dispatch('resetPassword', {remember_token:$store.getters.token,password:resetedPassword})"
       ></FormButton>
       <FormButton
         buttonText="取消"

@@ -10,25 +10,25 @@
       <CommonInput
         label="用戶暱稱"
         placeholder="例如: 小明"
-        :content="name"
-        @update:value="name = $event"
+        :content="registerInfo.name"
+        @update:value="registerInfo.name = $event"
       ></CommonInput>
       <CommonInput
         label="帳號 (電子信箱)"
         placeholder="請輸入帳號"
-        :content="email"
-        @update:value="email = $event"
+        :content="registerInfo.email"
+        @update:value="registerInfo.email = $event"
       ></CommonInput>
       <CommonInput
         label="密碼 (須 6~12 字)"
         placeholder="請輸入密碼"
         type="password"
-        :content="password"
-        @update:value="password = $event"
+        :content="registerInfo.password"
+        @update:value="registerInfo.password = $event"
       ></CommonInput>
       <FormButton
         buttonText="註冊"
-        @clickHandler="$store.dispatch('postRegister', registerInfo)"
+        @clickHandler="$store.dispatch('register', registerInfo)"
         :isDisabled="!isButtonDisabled"
       ></FormButton>
     </form>
@@ -50,15 +50,17 @@ export default {
   },
   data() {
     return {
-      name: "",
+      registerInfo:{
+              name: "",
       email: "",
       password: ""
+      }
     };
   },
   computed: {
     isButtonDisabled() {
-      const isNamePass = /^[A-z|\u4e00-\u9fa5]+/.test(this.name);
-      const isEmailPass = /^[A-z0-9]+@[A-z]+\.com{1}$/.test(this.email);
+      const isNamePass = /^[A-z|\u4e00-\u9fa5]+/.test(this.registerInfo.name);
+      const isEmailPass = /^[A-z0-9]+@[A-z]+\.com{1}$/.test(this.registerInfo.email);
       const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.password);
       return isNamePass && isEmailPass && isPasswordPass;
     }
