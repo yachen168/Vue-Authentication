@@ -20,7 +20,12 @@
       <FormButton
         buttonText="確認更改密碼"
         :isDisabled="!isButtonDisabled"
-        @clickHandler="$store.dispatch('resetPassword', {remember_token:$store.getters.token,password:resetedPassword})"
+        @clickHandler="
+          $store.dispatch('resetPassword', {
+            remember_token: $store.getters.token,
+            password: resetedPassword
+          })
+        "
       ></FormButton>
       <FormButton
         buttonText="取消"
@@ -53,7 +58,8 @@ export default {
   computed: {
     isButtonDisabled() {
       const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.resetedPassword);
-      const isDoubleCheckEmailPass = this.resetedPassword===this.checkedPassword;
+      const isDoubleCheckEmailPass =
+        this.resetedPassword === this.checkedPassword;
       return isPasswordPass && isDoubleCheckEmailPass;
     }
   }

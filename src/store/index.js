@@ -77,7 +77,7 @@ export default new Vuex.Store({
         Toast.fail("發生錯誤");
       }
     },
-    async resetPassword({getters}, data) {
+    async resetPassword({}, data) {
       try {
         await API.post("/reset", data);
         localStorage.setItem("remember_token", "");

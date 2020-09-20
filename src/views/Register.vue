@@ -50,17 +50,19 @@ export default {
   },
   data() {
     return {
-      registerInfo:{
-              name: "",
-      email: "",
-      password: ""
+      registerInfo: {
+        name: "",
+        email: "",
+        password: ""
       }
     };
   },
   computed: {
     isButtonDisabled() {
       const isNamePass = /^[A-z|\u4e00-\u9fa5]+/.test(this.registerInfo.name);
-      const isEmailPass = /^[A-z0-9]+@[A-z]+\.com{1}$/.test(this.registerInfo.email);
+      const isEmailPass = /^[A-z0-9]+@[A-z]+\.com{1}$/.test(
+        this.registerInfo.email
+      );
       const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.password);
       return isNamePass && isEmailPass && isPasswordPass;
     }

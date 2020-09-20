@@ -1,5 +1,5 @@
 import Vue from "vue";
-import store from "../store"
+import store from "../store";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
@@ -20,7 +20,9 @@ const routes = [
     path: "/forgetpassword",
     name: "ForgetPassword",
     component: () =>
-      import(/* webpackChunkName: "forget-password" */ "@/views/ForgetPassword.vue")
+      import(
+        /* webpackChunkName: "forget-password" */ "@/views/ForgetPassword.vue"
+      )
   },
   {
     path: "/resetpassword",
@@ -49,11 +51,13 @@ const routes = [
             /* webpackChunkName: "user-info-view" */
             "@/views/UserInfoView.vue"
           ),
-          async beforeEnter(routerTo, routerFrom, next) {
-            await store.dispatch("setToken");
-            await store.dispatch("fetchUserInfo", {remember_token: store.getters.token});
-            next();
-          },
+        async beforeEnter(routerTo, routerFrom, next) {
+          await store.dispatch("setToken");
+          await store.dispatch("fetchUserInfo", {
+            remember_token: store.getters.token
+          });
+          next();
+        },
         meta: {
           isToken: true
         }
@@ -64,11 +68,13 @@ const routes = [
         component: () =>
           /* webpackChunkName: "user-info-edit" */
           import("@/views/UserInfoEdit.vue"),
-          async beforeEnter(routerTo, routerFrom, next) {
-            await store.dispatch("setToken");
-            await store.dispatch("fetchUserInfo", {remember_token: store.getters.token});
-            next();
-          },
+        async beforeEnter(routerTo, routerFrom, next) {
+          await store.dispatch("setToken");
+          await store.dispatch("fetchUserInfo", {
+            remember_token: store.getters.token
+          });
+          next();
+        },
         meta: {
           isToken: true
         }
