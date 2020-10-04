@@ -62,7 +62,7 @@ export default new Vuex.Store({
     },
     async fetchUserInfo({ commit }, token) {
       const response = await API.post("/info", token);
-      commit("setUserInfo", response.data);
+      commit("setUserInfo", response.data.data);
     },
     async uploadFile({ commit }, formdata) {
       try {
