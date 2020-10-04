@@ -63,7 +63,7 @@ export default {
       const isEmailPass = /^[A-z0-9]+@[A-z]+\.com{1}$/.test(
         this.registerInfo.email
       );
-      const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.password);
+      const isPasswordPass = /^[A-z\d]{6,16}$/.test(this.registerInfo.password);
       return isNamePass && isEmailPass && isPasswordPass;
     }
   }
