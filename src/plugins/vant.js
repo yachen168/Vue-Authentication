@@ -1,4 +1,5 @@
 import Vue from "vue";
-import { Field } from "vant";
+import { Field, Uploader } from "vant";
 
 Vue.use(Field);
+Vue.use(Uploader);
