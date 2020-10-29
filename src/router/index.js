@@ -9,19 +9,19 @@ const routes = [
     path: "/",
     name: "Register",
     component: () =>
-      import(/* webpackChunkName: "register" */ "@/views/Register.vue")
+      import(/* webpackChunkName: "authentication" */ "@/views/Register.vue")
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import(/* webpackChunkName: "login" */ "@/views/Login.vue")
+    component: () => import(/* webpackChunkName: "authentication" */ "@/views/Login.vue")
   },
   {
     path: "/forgetpassword",
     name: "ForgetPassword",
     component: () =>
       import(
-        /* webpackChunkName: "forget-password" */ "@/views/ForgetPassword.vue"
+        /* webpackChunkName: "authentication" */ "@/views/ForgetPassword.vue"
       )
   },
   {
@@ -29,7 +29,7 @@ const routes = [
     name: "ResetPassword",
     component: () =>
       import(
-        /* webpackChunkName: "reset-password" */
+        /* webpackChunkName: "authentication" */
         "@/views/ResetPassword.vue"
       ),
     meta: {
@@ -48,7 +48,7 @@ const routes = [
         name: "UserInfoView",
         component: () =>
           import(
-            /* webpackChunkName: "user-info-view" */
+            /* webpackChunkName: "user-info" */
             "@/views/UserInfoView.vue"
           ),
         async beforeEnter(routerTo, routerFrom, next) {
@@ -66,7 +66,7 @@ const routes = [
         path: "edit",
         name: "UserInfoEdit",
         component: () =>
-          /* webpackChunkName: "user-info-edit" */
+          /* webpackChunkName: "user-info" */
           import("@/views/UserInfoEdit.vue"),
         async beforeEnter(routerTo, routerFrom, next) {
           await store.dispatch("setToken");
