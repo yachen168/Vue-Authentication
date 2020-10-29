@@ -1,6 +1,6 @@
 <template>
   <div class="edit-page">
-    <PageTitle pageName="用戶資訊"></PageTitle>
+    <PageTitle pageName="個人檔案"></PageTitle>
     <EditBanner title="個人照片">
       <div class="avatar-wrapper">
         <van-uploader
@@ -24,9 +24,14 @@
     <EditBanner title="信箱">
       <span>{{ $store.getters.userInfo.email }}</span>
     </EditBanner>
-    <p class="reset-password" @click="$router.push({ name: 'ResetPassword' })">
-      重設密碼
-    </p>
+    <EditBanner title="密碼">
+      <p
+        class="reset-password"
+        @click="$router.push({ name: 'ResetPassword' })"
+      >
+        重設密碼
+      </p>
+    </EditBanner>
   </div>
 </template>
 
