@@ -1,6 +1,10 @@
 # vue 權限管理
 一共串接 8 支 Restful API，實現會員註冊、登入、登出、修改會員資訊、上傳檔案等功能。
 
+## 成果 Demo
+Github page: https://yachen168.github.io/Vue-Authentication/ <br>
+Heroku: https://yachen-vue-authentication.herokuapp.com/
+
 ## 使用技術
 - Vue CLI
 - Vue Router
