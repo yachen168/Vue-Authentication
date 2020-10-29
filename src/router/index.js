@@ -14,7 +14,8 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: () => import(/* webpackChunkName: "authentication" */ "@/views/Login.vue")
+    component: () =>
+      import(/* webpackChunkName: "authentication" */ "@/views/Login.vue")
   },
   {
     path: "/forgetpassword",
@@ -25,21 +26,12 @@ const routes = [
       )
   },
   {
-    path: "/resetpassword",
-    name: "ResetPassword",
-    component: () =>
-      import(
-        /* webpackChunkName: "authentication" */
-        "@/views/ResetPassword.vue"
-      ),
-    meta: {
-      isToken: true
-    }
-  },
-  {
     path: "/userinfo",
     name: "UserInfo",
     redirect: "/userinfo/view", // default page
+    meta: {
+      isToken: true
+    },
     component: () =>
       import(/* webpackChunkName: "user-info" */ "@/views/UserInfo.vue"),
     children: [
@@ -57,9 +49,6 @@ const routes = [
             remember_token: store.getters.token
           });
           next();
-        },
-        meta: {
-          isToken: true
         }
       },
       {
@@ -74,10 +63,16 @@ const routes = [
             remember_token: store.getters.token
           });
           next();
-        },
-        meta: {
-          isToken: true
         }
+      },
+      {
+        path: "resetpassword",
+        name: "ResetPassword",
+        component: () =>
+          import(
+            /* webpackChunkName: "user-info" */
+            "@/views/ResetPassword.vue"
+          )
       }
     ]
   }
