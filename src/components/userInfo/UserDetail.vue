@@ -25,9 +25,10 @@ export default {
 <style lang="scss" scoped>
 .user-edit-button {
   width: 100px;
+  padding: 5px;
   text-align: center;
-  color: rgb(252, 124, 124);
-  border: 1px solid rgb(252, 124, 124);
+  color: #219665;
+  border: 1px solid #219665;
   border-radius: 3px;
   cursor: pointer;
 }
