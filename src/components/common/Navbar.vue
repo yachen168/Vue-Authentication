@@ -3,19 +3,12 @@
     <div>
       <h1>LOGO</h1>
     </div>
-    <span v-if="isLogout" class="logout" @click="$emit('logout')">登出</span>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-export default {
-  props: {
-    isLogout: {
-      type: Boolean,
-      required: true
-    }
-  }
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

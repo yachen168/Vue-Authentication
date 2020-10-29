@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar :isLogout="false" @logout="$store.dispatch('logout')"></Navbar>
+    <Navbar></Navbar>
     <form class="register">
       <PageTitle pageName="註冊帳號">
         <div @click="$router.push({ name: 'Login' })">

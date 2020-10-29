@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar :isLogout="true" @logout="$store.dispatch('logout')"></Navbar>
     <form>
       <PageTitle pageName="重新設定新密碼"></PageTitle>
       <CommonInput
@@ -37,14 +36,12 @@
 </template>
 
 <script>
-import Navbar from "@/components/common/Navbar";
 import PageTitle from "@/components/common/PageTitle";
 import CommonInput from "@/components/common/CommonInput";
 import FormButton from "@/components/common/FormButton";
 
 export default {
   components: {
-    Navbar,
     PageTitle,
     CommonInput,
     FormButton

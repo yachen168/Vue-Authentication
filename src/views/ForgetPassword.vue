@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar :isLogout="false" @logout="$store.dispatch('logout')"></Navbar>
+    <Navbar></Navbar>
     <form>
       <PageTitle pageName="忘記密碼"></PageTitle>
       <CommonInput

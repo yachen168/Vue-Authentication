@@ -1,9 +1,12 @@
 <template>
   <div>
-    <Navbar
-      :isLogout="true"
-      @logout="$store.dispatch('logout', $store.getters.token)"
-    ></Navbar>
+    <Navbar>
+      <span
+        class="logout"
+        @click="$store.dispatch('logout', { remember_token: $store.getters.token })"
+        >登出</span
+      >
+    </Navbar>
     <router-view />
   </div>
 </template>
