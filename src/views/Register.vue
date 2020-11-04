@@ -29,7 +29,7 @@
       <BaseButton
         buttonText="註冊"
         :isDisabled="!isButtonDisabled"
-        @click="dispatch('register', registerInfo)"
+        @click="$store.dispatch('register', registerInfo)"
       ></BaseButton>
     </form>
   </div>
