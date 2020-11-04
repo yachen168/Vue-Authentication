@@ -4,6 +4,8 @@
 ## 成果 Demo
 Github page: https://yachen168.github.io/Vue-Authentication/
 
+![](./demo.gif)
+
 ## 使用技術
 - Vue CLI
 - Vue Router
