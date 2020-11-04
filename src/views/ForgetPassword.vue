@@ -16,16 +16,16 @@
         :content="forgetPassword.password"
         @inputChange="forgetPassword.password = $event"
       ></CommonInput>
-      <FormButton
+      <BaseButton
         buttonText="確認更改密碼"
         :isDisabled="!isButtonDisabled"
-        @clickHandler="$store.dispatch('forgetPassword', forgetPassword)"
-      ></FormButton>
-      <FormButton
+        @click="$store.dispatch('forgetPassword', forgetPassword)"
+      ></BaseButton>
+      <BaseButton
         buttonText="取消"
         :isDisabled="false"
-        @clickHandler="$router.back()"
-      ></FormButton>
+        @click="$router.back()"
+      ></BaseButton>
     </form>
   </div>
 </template>
@@ -34,14 +34,14 @@
 import Navbar from "@/components/common/Navbar";
 import PageTitle from "@/components/common/PageTitle";
 import CommonInput from "@/components/common/CommonInput";
-import FormButton from "@/components/common/FormButton";
+import BaseButton from "@/components/common/BaseButton";
 
 export default {
   components: {
     Navbar,
     PageTitle,
     CommonInput,
-    FormButton
+    BaseButton
   },
   data() {
     return {

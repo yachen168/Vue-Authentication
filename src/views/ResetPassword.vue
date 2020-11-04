@@ -16,21 +16,21 @@
         :content="checkedPassword"
         @update:value="checkedPassword = $event"
       ></CommonInput>
-      <FormButton
+      <BaseButton
         buttonText="確認更改密碼"
         :isDisabled="!isButtonDisabled"
-        @clickHandler="
+        @click="
           $store.dispatch('resetPassword', {
             remember_token: $store.getters.token,
             password: resetedPassword
           })
         "
-      ></FormButton>
-      <FormButton
+      ></BaseButton>
+      <BaseButton
         buttonText="取消"
         :isDisabled="false"
-        @clickHandler="$router.push({ name: 'UserInfoEdit' })"
-      ></FormButton>
+        @click="$router.push({ name: 'UserInfoEdit' })"
+      ></BaseButton>
     </form>
   </div>
 </template>
@@ -38,13 +38,13 @@
 <script>
 import PageTitle from "@/components/common/PageTitle";
 import CommonInput from "@/components/common/CommonInput";
-import FormButton from "@/components/common/FormButton";
+import BaseButton from "@/components/common/BaseButton";
 
 export default {
   components: {
     PageTitle,
     CommonInput,
-    FormButton
+    BaseButton
   },
   data() {
     return {

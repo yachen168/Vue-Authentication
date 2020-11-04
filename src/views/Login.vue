@@ -20,11 +20,11 @@
         :content="password"
         @update:value="password = $event"
       ></CommonInput>
-      <FormButton
+      <BaseButton
         buttonText="登入"
         :isDisabled="!isButtonDisabled"
-        @clickHandler="login"
-      ></FormButton>
+        @click="login"
+      ></BaseButton>
     </form>
     <p class="forget" @click="$router.push({ name: 'ForgetPassword' })">
       忘記密碼
@@ -36,14 +36,14 @@
 import Navbar from "@/components/common/Navbar";
 import PageTitle from "@/components/common/PageTitle";
 import CommonInput from "@/components/common/CommonInput";
-import FormButton from "@/components/common/FormButton";
+import BaseButton from "@/components/common/BaseButton";
 
 export default {
   components: {
     Navbar,
     PageTitle,
     CommonInput,
-    FormButton
+    BaseButton
   },
   data() {
     return {

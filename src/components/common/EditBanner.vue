@@ -1,7 +1,7 @@
 <template>
   <div class="edit-banner">
-    <span>{{ title }}</span>
-    <span><slot></slot></span>
+    <h3>{{ title }}</h3>
+    <slot></slot>
   </div>
 </template>
 
@@ -23,5 +23,9 @@ export default {
   align-items: center;
   padding: 10px;
   background-color: #fff;
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
 }
 </style>

@@ -26,11 +26,11 @@
         :content="registerInfo.password"
         @update:value="registerInfo.password = $event"
       ></CommonInput>
-      <FormButton
+      <BaseButton
         buttonText="註冊"
-        @clickHandler="$store.dispatch('register', registerInfo)"
         :isDisabled="!isButtonDisabled"
-      ></FormButton>
+        @click="dispatch('register', registerInfo)"
+      ></BaseButton>
     </form>
   </div>
 </template>
@@ -39,14 +39,14 @@
 import Navbar from "@/components/common/Navbar";
 import PageTitle from "@/components/common/PageTitle";
 import CommonInput from "@/components/common/CommonInput";
-import FormButton from "@/components/common/FormButton";
+import BaseButton from "@/components/common/BaseButton";
 
 export default {
   components: {
     Navbar,
     PageTitle,
     CommonInput,
-    FormButton
+    BaseButton
   },
   data() {
     return {
